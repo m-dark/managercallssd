@@ -171,15 +171,16 @@ def hangup_calls(uniqueid):
                                                 han_callerIDNum = dict_Hangup[uniqueid]['CallerIDNum'].replace('#','')
                                                 han_callerIDNum = han_callerIDNum.replace('FMGL-','')
                                                 if channel_param_number[1] == han_callerIDNum:
-                                                        if dict_DialBegin[uniqueid]['ConnectedLineNum'] in dict_findmefollow[han_callerIDNum]:
-                                                                result=re.match(r'10[01]\d\d$', dict_DialBegin[uniqueid]['ConnectedLineNum'])
-                                                                if result is not None:
-                                                                        log.info('FW Вызов с номера: '+str(dict_Hangup[uniqueid]['ConnectedLineNum'])+' на номер: '+str(dict_DialBegin[uniqueid]['ConnectedLineNum'])+' продолжительностью разговора: '+str(call_duration)+' Начало: '+str(date_time_start)+' Завершился: '+str(date_time_stop)+' Uniqueid = '+str(dict_Hangup[uniqueid]['Uniqueid']))
-#                                                                        print ('!@!@!!@!@!@!@@!'+dict_DialBegin[uniqueid]['ConnectedLineNum'])
-                                                                        push_xml(str(dict_DialBegin[uniqueid]['ConnectedLineNum']), str(dict_Hangup[uniqueid]['ConnectedLineNum']), str(date_time_start), str(date_time_stop), str(call_duration))
-#                                                                        print('!!55555! Вызов '+str(date_time_start)+' с номера '+str(dict_Hangup[uniqueid]['ConnectedLineNum'])+' на номер '+str(dict_DialBegin[uniqueid]['ConnectedLineNum'])+' продолжительностью разговора '+str(call_duration)+' Завершился '+str(date_time_stop)+"\n")
-#                                                                        print('CallerIDNum = '+str(dict_Hangup[uniqueid]['CallerIDNum'])+' ConnectedLineNum = '+ str(dict_Hangup[uniqueid]['ConnectedLineNum']))
-#                                                                        print('Uniqueid = '+str(dict_Hangup[uniqueid]['Uniqueid']))
+                                                        if han_callerIDNum in dict_findmefollow:
+                                                                if dict_DialBegin[uniqueid]['ConnectedLineNum'] in dict_findmefollow[han_callerIDNum]:
+                                                                        result=re.match(r'10[01]\d\d$', dict_DialBegin[uniqueid]['ConnectedLineNum'])
+                                                                        if result is not None:
+                                                                                log.info('FW Вызов с номера: '+str(dict_Hangup[uniqueid]['ConnectedLineNum'])+' на номер: '+str(dict_DialBegin[uniqueid]['ConnectedLineNum'])+' продолжительностью разговора: '+str(call_duration)+' Начало: '+str(date_time_start)+' Завершился: '+str(date_time_stop)+' Uniqueid = '+str(dict_Hangup[uniqueid]['Uniqueid']))
+#                                                                                print ('!@!@!!@!@!@!@@!'+dict_DialBegin[uniqueid]['ConnectedLineNum'])
+                                                                                push_xml(str(dict_DialBegin[uniqueid]['ConnectedLineNum']), str(dict_Hangup[uniqueid]['ConnectedLineNum']), str(date_time_start), str(date_time_stop), str(call_duration))
+#                                                                                print('!!55555! Вызов '+str(date_time_start)+' с номера '+str(dict_Hangup[uniqueid]['ConnectedLineNum'])+' на номер '+str(dict_DialBegin[uniqueid]['ConnectedLineNum'])+' продолжительностью разговора '+str(call_duration)+' Завершился '+str(date_time_stop)+"\n")
+#                                                                                print('CallerIDNum = '+str(dict_Hangup[uniqueid]['CallerIDNum'])+' ConnectedLineNum = '+ str(dict_Hangup[uniqueid]['ConnectedLineNum']))
+#                                                                                print('Uniqueid = '+str(dict_Hangup[uniqueid]['Uniqueid']))
                                                         else:
                                                                 result=re.match(r'10[01]\d\d$', han_callerIDNum)
                                                                 if result is not None:
