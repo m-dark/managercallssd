@@ -66,7 +66,7 @@ def push_xml(linenumber, callerid, timestart, timestop, totalsec):
 		data += '    <property_simple key="userid" value="'+linenumber+'" />'+"\n"
 		data += '  </call>'+"\n"
 		data += '</content>'+"\n"
-		print(data)
+####		print(data)
 		post_data = parse.urlencode({'xml':data}).encode("utf-8")
 		req = request.Request(URL, data=post_data)
 		response = request.urlopen(url=URL, data=post_data)
